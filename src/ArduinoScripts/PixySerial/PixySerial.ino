@@ -5,30 +5,44 @@
 Pixy pixy;
 short rx = 0;
 short tx = 1;
+short i = 0;
 SoftwareSerial mySerial(rx,tx);
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(5600);
+  Serial.begin(9600);
   pinMode(rx , INPUT);
   pinMode(tx , OUTPUT);
   pixy.init();
-  mySerial.begin(4800);
-  mySerial.listen();
+  mySerial.begin(19200);
 }
 
-short i = 0;
 
 void loop() 
 {
   // put your main code here, to run repeatedly:
-  if(mySerial.isListening() && mySerial.available()>0 && i%50 == 0)
+  mySerial.listen();
+  if(mySerial.isListening())
   {
-      if(mySerial.read() == "1")
+    Serial.println("listening");
+  }
+  if(mySerial.isListening() && mySerial.available()>0)
+  {
+    Serial.println("WORKING!!");
+      char c = mySerial.read();
+      if(c == '1')
       {
         mySerial.write(pixy.getBlocks());
         delay(50);
       }
+  }
+  else
+  {
+    Serial.println("NOT WORKING!!");
+  }
+  if(i % 1000 == 0)
+  {
+    Serial.println(pixy.getBlocks());
   }
   i++;
 }

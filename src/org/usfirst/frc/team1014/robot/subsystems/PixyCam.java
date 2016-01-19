@@ -18,12 +18,15 @@ public class PixyCam extends BadSubsystem{
 		return instance;
 	}
 	
+	public PixyCam()
+	{
+		
+	}
 	
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		pixyPort = new SerialPort(4800,Port.kOnboard);
-		
+		pixyPort = new SerialPort(19200,SerialPort.Port.kOnboard);
 	}
 
 	@Override
