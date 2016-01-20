@@ -1,14 +1,16 @@
 package org.usfirst.frc.team1014.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import org.usfirst.frc.team1014.robot.sensors.PixyCam;
+
 
 public class PixyCommand extends CommandBase
 {
-
+	PixyCam pixy;
+	
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		requires((Subsystem) pixy);
+		pixy  = new PixyCam();
 	}
 
 	@Override

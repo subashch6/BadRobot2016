@@ -2,8 +2,8 @@ package org.usfirst.frc.team1014.robot.commands;
 
 // The imports for the final subsystems
 import org.usfirst.frc.team1014.robot.OI;
+import org.usfirst.frc.team1014.robot.sensors.PixyCam;
 import org.usfirst.frc.team1014.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team1014.robot.subsystems.PixyCam;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 public abstract class CommandBase extends Command {
     public static OI oi;
     public static DriveTrain driveTrain;
-    public static PixyCam pixy;
     
     // The subsystems on the final robot go here
     
@@ -20,7 +19,6 @@ public abstract class CommandBase extends Command {
         //Final Subsystems
     	
     	driveTrain = DriveTrain.getInstance();
-    	pixy = PixyCam.getInstance();
     	//camera  = new AxisCamera("axis-camera.local");
     	
         // This MUST be here. If the OI creates Commands (which it very likely

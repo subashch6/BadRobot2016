@@ -13,7 +13,7 @@ public class Logger
 	 * quick log method that can be used anywhere.
 	 * @param stringToLog
 	 */
-	public static void logThis(String stringToLog)
+	public static void logThis(Object stringToLog)
 	{
 		System.out.println(stringToLog);
 	}
