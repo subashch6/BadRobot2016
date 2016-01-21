@@ -21,20 +21,42 @@ public class PixyCam{
 	
 	public PixyCam()
 	{
-		pixyPort = new I2C(I2C.Port.kMXP,6);
+		pixyPort = new I2C(I2C.Port.kOnboard, 4);
+		//pixyPort = new SerialPort(19200, SerialPort.Port.kMXP);
 	}
-	
 	
 	public void grabAndLog()
 	{
-		byte[] readData = new byte[3];
-		byte[] call = new byte[1];
-		call[0] = (byte) 'A';
-		pixyPort.transaction(call, call.length, readData, readData.length);
+		byte[] readData = new byte[1];
+		String write = "A";
+		char[] arr = write.toCharArray();
+		byte[] bytes = new byte[arr.length];
+		for(int i = 0; i < arr.length; i++)
+		{
+			bytes[i] = (byte) arr[i];
+		}
+		boolean worked = pixyPort.writeBulk(bytes);
+		if(!worked)
+		{
+			Logger.logThis("Works!!");
+		}
+		else
+		{
+			Logger.logThis("Didn't Work!!");
+		}
+		try {
+			Thread.sleep(50);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		/*pixyPort.readOnly(readData, readData.length);
+		
 		for(byte x:readData)
 		{
-			Logger.logThis((int) x);
-		}
+			Logger.logThis((char) x);
+		}*/
 	}
 	
 	public void die()

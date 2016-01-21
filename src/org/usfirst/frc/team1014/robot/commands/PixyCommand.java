@@ -10,7 +10,7 @@ public class PixyCommand extends CommandBase
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		pixy  = new PixyCam();
+		pixy  = PixyCam.getInstance();
 	}
 
 	@Override

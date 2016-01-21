@@ -2,11 +2,10 @@
 #include <Pixy.h>
 
 Pixy pixy;
-short i = 0;
-void setup() 
+void setup()
 {
   // put your setup code here, to run once:
-  Wire.begin(6);
+  Wire.begin(4);
   Wire.onReceive(checkAndReturn);
   pixy.init();
   Serial.begin(9600);
@@ -14,17 +13,14 @@ void setup()
 
 void checkAndReturn(int byteCount)
 {
-  if(byteCount == 1)
+  Serial.println("Recieved");
+  if (Wire.available() > 0)
   {
     char c = Wire.read();
     Serial.println(c);
-    if( c == 'A')
-    {
-      Wire.write(pixy.getBlocks());
-    }
   }
 }
-void loop() 
+void loop()
 {
-  Serial.println(pixy.getBlocks());
+  delay(50);
 }

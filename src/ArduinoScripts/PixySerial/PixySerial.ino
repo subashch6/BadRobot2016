@@ -15,27 +15,27 @@ void setup() {
   pinMode(tx , OUTPUT);
   pixy.init();
   mySerial.begin(19200);
+  mySerial.listen();
 }
 
 
 void loop() 
 {
   // put your main code here, to run repeatedly:
-  mySerial.listen();
-  if(mySerial.isListening())
+ /* if(mySerial.isListening())
   {
-    Serial.println("listening");
+    if(mySerial.available()>0)
+    {
+        Serial.println("WORKING!!"); 
+        char c = mySerial.read();
+        if(c == 'A')
+        {
+          mySerial.write(pixy.getBlocks());
+          delay(50);
+        }
+    }
   }
-  if(mySerial.isListening() && mySerial.available()>0)
-  {
-    Serial.println("WORKING!!");
-      char c = mySerial.read();
-      if(c == '1')
-      {
-        mySerial.write(pixy.getBlocks());
-        delay(50);
-      }
-  }
+ 
   else
   {
     Serial.println("NOT WORKING!!");
@@ -45,4 +45,9 @@ void loop()
     Serial.println(pixy.getBlocks());
   }
   i++;
+  delay(10);*/
+  if(mySerial.available() > 0)
+  {
+    Serial.println(mySerial.read());
+  }
 }
